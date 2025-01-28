@@ -2,9 +2,9 @@ import asyncio
 
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import CommandStart
+from dotenv import dotenv_values
 
 
-API_TOKEN = '7892253798:AAFhlNyHCZDwllpzU638ssx8UYccWbIXFSE'
 dp = Dispatcher()
 
 #команда старт
@@ -27,7 +27,8 @@ async def users(id):
 
 async def main() -> None:
     # Initialize Bot instance with default bot properties which will be passed to all API calls
-    bot = Bot(token=API_TOKEN)
+    token=dotenv_values(".env")
+    bot = Bot(token=token["token"])
 
     # And the run events dispatching
     await dp.start_polling(bot)
