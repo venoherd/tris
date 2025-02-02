@@ -39,7 +39,7 @@ async def get_user(user_id: int):
 
 #добавление в бд для доступа
 @dp.message(Command("add"))
-async def add_pm(message: types.Message):
+async def add_sw(message: types.Message):
    if message.from_user.id == 431862198:
        user_id = message.text.split()[1]
        print (user_id)

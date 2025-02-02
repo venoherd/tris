@@ -27,36 +27,48 @@ async def create_apartment():
             )
         """)
         await db.commit()
-#
+#таблица данных по комнатам
 async def create_rooms():
     async with aiosqlite.connect("database.db") as db:
         await db.execute("""
             CREATE TABLE IF NOT EXISTS rooms (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                user_id INTEGER UNIQUE
+                apartment_id INTEGER,
+                room_number INTEGER,
+                time_create DATETIME DEFAULT current_timestamp,
+                creator_id INTEGER,
+                FOREIGN KEY(apartment_id) REFERENCES apartment(id), 
+                FOREIGN KEY(creator_id) REFERENCES users(id)
             )
         """)
         await db.commit()
-#
-async def create_qus():
+#Таблица по вопросам
+async def create_question():
     async with aiosqlite.connect("database.db") as db:
         await db.execute("""
-            CREATE TABLE IF NOT EXISTS users (
+            CREATE TABLE IF NOT EXISTS question (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                user_id INTEGER UNIQUE
+                question_text TEXT,
+                answers TEXT,
+                tags TEXT
             )
         """)
         await db.commit()
 
-#
-async def create_ans():
+#Связанная таблица
+async def create_answers():
     async with aiosqlite.connect("database.db") as db:
         await db.execute("""
-             CREATE TABLE IF NOT EXISTS users (
+             CREATE TABLE IF NOT EXISTS answers (
                  id INTEGER PRIMARY KEY AUTOINCREMENT,
-                 user_id INTEGER UNIQUE
+                 room_id INTEGER,
+                 question_id INTEGER, 
+                 answer INTEGER,
+                 data TEXT NULL,
+                 FOREIGN KEY(room_id) REFERENCES rooms(id),
+                 FOREIGN KEY(question_id) REFERENCES question(id)
              )
          """)
         await db.commit()
 
-asyncio.run(create_apartment())
+asyncio.run(create_answers())
