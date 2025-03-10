@@ -1,50 +1,36 @@
 import asyncio
+from aiogram.types import Message, CallbackQuery
+from aiogram import F
+
 import aiosqlite
 
 from aiogram import Bot, Dispatcher, types
+from aiogram.dispatcher import router
 from aiogram.filters import CommandStart, Command
 from dotenv import dotenv_values
+from data.talkusers import router_dic
+from data.time import router_time
+from data.slashes import router_sla
+from data.keyboards_back import router_boards_back
 
+from data.slashes import info, help, hello
 
 dp = Dispatcher()
+dp.include_router(router_time)
+dp.include_router(router_sla)
+dp.include_router(router_boards_back)
+dp.include_router(router_dic)
+
 
 #команда старт
 @dp.message(CommandStart())
-async def check_user_id(message: types.Message):
-    if not await get_user(message.from_user.id):
-        await message.reply("У вас нет доступа к этому боту.")
-        return
-    await message.reply("Добро пожаловать!")
+async def command_start(message: Message):
+    await message.answer("текст")
 
-#база данных
 
-async def add_user(user_id: int):
-    async with aiosqlite.connect("database.db") as db:
-        await db.execute(
-            "INSERT OR IGNORE INTO users (user_id) VALUES (?)",
-            (user_id,)
-        )
-        await db.commit()
+#обработка текстовых запросов
 
-async def get_user(user_id: int):
-    async with aiosqlite.connect("database.db") as db:
-        async with db.execute("SELECT user_id FROM users",) as cursor:
-            users = await cursor.fetchall()
-            users = [x[0] for x in users]
-            print(users)
-            if users is None:
-                return False
 
-            return user_id in users
-
-#добавление в бд для доступа
-@dp.message(Command("add"))
-async def add_sw(message: types.Message):
-   if message.from_user.id == 431862198:
-       user_id = message.text.split()[1]
-       print (user_id)
-       await add_user(int(user_id))
-       await message.reply(f"Пользователь {user_id} добавлен")
 
 #запуск бота
 async def main() -> None:

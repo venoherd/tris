@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Взаимодействие с ботом</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Взаимодействие с ботом</h1>
+    <form id="talkForm">
+        <input type="text" name="keyword" placeholder="Ключевое слово" required>
+        <input type="text" name="backword" placeholder="Обратная связь" required>
+        <button type="submit">Отправить</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#talkForm').on('submit', function(event) {
+                event.preventDefault(); // Предотвращаем перезагрузку страницы
+                $.ajax({
+                    type: 'POST',
+                    url: '/talk',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        $('#result').text(response.result);
+                    },
+                    error: function() {
+                        $('#result').text('Произошла ошибка.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

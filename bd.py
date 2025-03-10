@@ -1,5 +1,9 @@
+
 import aiosqlite
 import asyncio
+
+from data.talkusers import create_talku, delete_talku, allprint, output_word
+
 
 #таблица для вайтлиста
 async def create_users():
@@ -71,4 +75,17 @@ async def create_answers():
          """)
         await db.commit()
 
-asyncio.run(create_answers())
+#Таблица для запросов
+async def create_talkuser():
+    async  with aiosqlite.connect("database.db") as db:
+        await db.execute("""
+            CREATE TABLE IF NOT EXISTS talkuser (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            key TEXT unique, 
+            back TEXT  
+             )
+         """)
+        await db.commit()
+
+
+asyncio.run(create_talku("" ""))
