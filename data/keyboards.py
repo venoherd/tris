@@ -10,28 +10,27 @@ all_page_one = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text="Проблема 'сюрпризы после гостей'", callback_data="guest_trouble")],
     [InlineKeyboardButton(text="Проблема с постельным", callback_data="bedding")],
     [InlineKeyboardButton(text="Проблемы с раздаткой ", callback_data="consumables")],
-    [InlineKeyboardButton(text="Следующая страница ", callback_data="next_page_all")]
+    [InlineKeyboardButton(text="прошлая ", callback_data="last_page_all"), InlineKeyboardButton(text="следующая", callback_data="next_page_all")],
 ])
 
 all_page_two = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text="что", callback_data="who")],
     [InlineKeyboardButton(text="что", callback_data="who")],
-    [InlineKeyboardButton(text="что", callback_data="who")],
-    [InlineKeyboardButton(text="что", callback_data="who")],
-    [InlineKeyboardButton(text="Предыдущая страница", callback_data="last_page_all")]
+    [InlineKeyboardButton(text="что", callback_data="who"),InlineKeyboardButton(text="что", callback_data="who")],
+    [InlineKeyboardButton(text="прошлая ", callback_data="last_page_all"),
+     InlineKeyboardButton(text="следующая", callback_data="next_page_all")],
 ])
-
 
 
 #Локер
 locer_all = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text="В локере нет ключей", callback_data="locer_1")],
-    [InlineKeyboardButton(text="Локер не открывается", callback_data="locer_2")],
-    [InlineKeyboardButton(text="Локер сломан", callback_data="locer_3")],
-    [InlineKeyboardButton(text="Локера нет на его месте", callback_data="locer_4")],
-    [InlineKeyboardButton(text="В локере есть ключи, но ещё нет 10:00", callback_data="locer_5")],
-    [InlineKeyboardButton(text="Дверь в квартиру не открывается", callback_data="locer_6")],
-    [InlineKeyboardButton(text="Гости ещё в квартире (SOS гости не выехали вовремя, extra time за ожидание)", callback_data="locer_7")],
+    [InlineKeyboardButton(text="В локере нет ключей", callback_data="problem locer_1")],
+    [InlineKeyboardButton(text="Локер не открывается", callback_data="problem locer_2")],
+    [InlineKeyboardButton(text="Локер сломан", callback_data="problem locer_3")],
+    [InlineKeyboardButton(text="Локера нет на его месте", callback_data="problem locer_4")],
+    [InlineKeyboardButton(text="В локере есть ключи, но ещё нет 10:00", callback_data="problem locer_5")],
+    [InlineKeyboardButton(text="Дверь в квартиру не открывается", callback_data="problem locer_6")],
+    [InlineKeyboardButton(text="Гости ещё в квартире (SOS гости не выехали вовремя, extra time за ожидание)", callback_data="problem locer_7")],
     [InlineKeyboardButton(text="Проблемы нет в списке", callback_data="add_problem_locer")]
 ])
 
@@ -46,11 +45,11 @@ last_page_locer = InlineKeyboardMarkup(inline_keyboard=[
 
 #гости
 guest_trouble_all =InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text="Квартира в ужасном состоянии", callback_data="guest_trouble_1")],
-    [InlineKeyboardButton(text="Поломки и неисправности", callback_data="guest_trouble_2")],
-    [InlineKeyboardButton(text="Забытые вещи ", callback_data="guest_trouble_3")],
-    [InlineKeyboardButton(text="Оставленные деньги ", callback_data="guest_trouble_4")],
-    [InlineKeyboardButton(text="Проблемы нет в списке", callback_data="add_problem_guest")],
+    [InlineKeyboardButton(text="Квартира в ужасном состоянии", callback_data="problem guest_trouble_1")],
+    [InlineKeyboardButton(text="Поломки и неисправности", callback_data="problem guest_trouble_2")],
+    [InlineKeyboardButton(text="Забытые вещи ", callback_data="problem guest_trouble_3")],
+    [InlineKeyboardButton(text="Оставленные деньги ", callback_data="problem guest_trouble_4")],
+    [InlineKeyboardButton(text="Проблемы нет в списке", callback_data="problem add_problem_guest")],
 ])
 
 
@@ -60,9 +59,9 @@ last_page_guest = InlineKeyboardMarkup(inline_keyboard=[
 ])
 #Двери
 door = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text="Не могу открыть дверь в здание", callback_data="door_1")],
-    [InlineKeyboardButton(text="Не могу открыть дверь в квартиру", callback_data="door_2")],
-    [InlineKeyboardButton(text="Проблема с ключами", callback_data="door_3")],
+    [InlineKeyboardButton(text="Не могу открыть дверь в здание", callback_data="problem door_1")],
+    [InlineKeyboardButton(text="Не могу открыть дверь в квартиру", callback_data="problem door_2")],
+    [InlineKeyboardButton(text="Проблема с ключами", callback_data="problem door_3")],
     [InlineKeyboardButton(text="Проблемы нет в списке", callback_data="add_problem_door")]
 ])
 

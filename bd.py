@@ -2,6 +2,7 @@
 import aiosqlite
 import asyncio
 
+from data.db_tools import create_output_keywords
 from data.talkusers import create_talku, delete_talku, allprint, output_word
 
 
@@ -88,4 +89,18 @@ async def create_talkuser():
         await db.commit()
 
 
-asyncio.run(create_talku("" ""))
+#таблица для кейбордов
+async def output_keywords():
+    async  with aiosqlite.connect("COCACOLA.db") as db:
+        await db.execute("""
+            CREATE TABLE IF NOT EXISTS keywords_inst (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+           name_problem TEXT unique,
+           manual TEXT              
+             )
+         """)
+        await db.commit()
+
+
+
+asyncio.run(create_output_keywords("locer_2","Локер не открывается \n \n1. Отправьте в чат фото локера издалека, чтобы супервайзер убедилась в том, что вы открываете наш локер. \n \n2. Одновременно сами убедитесь, что локер наш. \nСравните фото локера и расположение локера в программе в блоке \"как войти в квартиру\" \n \n3. Нужно поболтать локер, чтобы по звуку  понять есть ли ключи внутри \n \n4. Гости могут разместить ключи внутри локера неверно, из-за чего могут заблокировать локер, для этого нужно стукнуть локер \n \n5. Если не помогло, нужно перевернуть локер и открывать его в перевёрнутом положении"))

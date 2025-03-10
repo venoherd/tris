@@ -1,5 +1,3 @@
-
-
 from aiogram import Router, F
 from aiogram.types import  CallbackQuery, Message
 from data.keyboards import last_page_locer, door, last_page_door, all_page_one, locer_all, all_page_two, \
@@ -15,7 +13,7 @@ async def rpoblem_main(message: Message):
     await message.answer("Ниже представлен список всех проблем",reply_markup=all_page_one,)
 
 @router_boards_back.message(F.text.lower() == "проблемы два")
-async def rpoblem_main(message: Message):
+async def rpoblem_main_two(message: Message):
     await message.answer("Ниже представлен список всех проблем",reply_markup=all_page_two,)
 
 @router_boards_back.callback_query(F.data == "next_page_all")
@@ -125,15 +123,15 @@ async def door_1(call: CallbackQuery):
 
 @router_boards_back.callback_query(F.data == "guests_2")
 async def door_2(call: CallbackQuery):
-    await call.message.edit_text("тут", reply_markup=last_page_guests)
+    await call.message.edit_text("тут", reply_markup=last_page_guest)
 
 @router_boards_back.callback_query(F.data == "guests_3")
 async def door_3(call: CallbackQuery):
-    await call.message.edit_text("тут", reply_markup=last_page_guests)
+    await call.message.edit_text("тут", reply_markup=last_page_guest)
 
 @router_boards_back.callback_query(F.data == "return_guests")
 async def door_r(call: CallbackQuery):
-    await call.message.edit_text("проблема не проблема",reply_markup=guests)
+    await call.message.edit_text("проблема не проблема",reply_markup=guest_trouble_all)
 
 @router_boards_back.callback_query(F.data == "add_problem")
 async def door_add(call: CallbackQuery):
@@ -142,3 +140,10 @@ async def door_add(call: CallbackQuery):
 @router_boards_back.callback_query(F.data == "guests_decided")
 async def door_dec(call: CallbackQuery):
     await call.message.edit_text("Отлично!")
+
+
+
+#как должна выглядеть эта функция
+@router_boards_back.callback_query(F.data == "locer_1")
+async def locer_1(call: CallbackQuery):
+    await call.message.edit_text(text="", reply_markup=last_page_locer)

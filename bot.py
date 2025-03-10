@@ -8,6 +8,8 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.dispatcher import router
 from aiogram.filters import CommandStart, Command
 from dotenv import dotenv_values
+
+from data.keyboards_callback import router_boards_callback
 from data.talkusers import router_dic
 from data.time import router_time
 from data.slashes import router_sla
@@ -18,6 +20,7 @@ from data.slashes import info, help, hello
 dp = Dispatcher()
 dp.include_router(router_time)
 dp.include_router(router_sla)
+dp.include_router(router_boards_callback)
 dp.include_router(router_boards_back)
 dp.include_router(router_dic)
 
