@@ -1,11 +1,13 @@
 from aiogram import Router, F
 from aiogram.types import  CallbackQuery, Message
-from data.keyboards import last_page_locer, door, last_page_door, all_page_one, locer_all, all_page_two, \
+from data.keyboards import last_page_locer, last_page_door, all_page_one, locer_all, all_page_two, \
     last_page_guest, guest_trouble_all
 
 router_boards_back = Router(name='Bobi')
 #обработчики
-
+@router_boards_back.message(F.text.lower() == "помощь")
+async def rpoblem_main(message: Message):
+    await message.reply(text="Если у вас возникла какая-то проблема, напишите в чат - \"проблема\", далее выберете с чем ваша проблема и найдите ее в списке! ")
 
 #основное меню
 @router_boards_back.message(F.text.lower() == "проблемы")
@@ -35,7 +37,7 @@ async def locer_f_1(call: CallbackQuery):
 
 #обработчик локера
 #в локере нет ключей
-@router_boards_back.callback_query(F.data == "locer_1")
+@router_boards_back.callback_query(F.data == "ffff")
 async def locer_1(call: CallbackQuery):
     await call.message.edit_text("тут", reply_markup=last_page_locer)
 #Локер не открывается
@@ -77,9 +79,7 @@ async def locer_dec(call: CallbackQuery):
     await call.message.edit_text("Отлично!")
 
 #дверь
-@router_boards_back.message(F.text.lower() == "проблема дверь")
-async def door_f(message: Message):
-    await message.reply("проблема не проблема",reply_markup=door)
+
 
 @router_boards_back.callback_query(F.data == "guest_trouble")
 async def locer_dec(call: CallbackQuery):
@@ -99,9 +99,6 @@ async def door_2(call: CallbackQuery):
 async def door_3(call: CallbackQuery):
     await call.message.edit_text("тут", reply_markup=last_page_door)
 
-@router_boards_back.callback_query(F.data == "return_door")
-async def door_r(call: CallbackQuery):
-    await call.message.edit_text("проблема не проблема",reply_markup=door)
 
 @router_boards_back.callback_query(F.data == "add_problem")
 async def door_add(call: CallbackQuery):

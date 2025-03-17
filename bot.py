@@ -28,7 +28,7 @@ dp.include_router(router_dic)
 #команда старт
 @dp.message(CommandStart())
 async def command_start(message: Message):
-    await message.answer("текст")
+    await message.answer("Привет, вспомогательный бот Trisservice готов к работе!")
 
 
 #обработка текстовых запросов

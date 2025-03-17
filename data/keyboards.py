@@ -6,8 +6,8 @@ router_boards = Router(name='jon')
 
 #основное меню
 all_page_one = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text="Проблемы с входом ", callback_data="entry")],
-    [InlineKeyboardButton(text="Проблема 'сюрпризы после гостей'", callback_data="guest_trouble")],
+    [InlineKeyboardButton(text="Проблемы с входом ", callback_data="locer")],
+    [InlineKeyboardButton(text="Проблема 'сюрпризы после гостей'", callback_data="guest")],
     [InlineKeyboardButton(text="Проблема с постельным", callback_data="bedding")],
     [InlineKeyboardButton(text="Проблемы с раздаткой ", callback_data="consumables")],
     [InlineKeyboardButton(text="прошлая ", callback_data="last_page_all"), InlineKeyboardButton(text="следующая", callback_data="next_page_all")],
@@ -40,9 +40,6 @@ last_page_locer = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text="вернуться", callback_data="return_locer")],[InlineKeyboardButton(text="проблема решена", callback_data="locer_decided")]
 ])
 
-#добавление проблемы локера
-#сделаю но позже
-
 #гости
 guest_trouble_all =InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text="Квартира в ужасном состоянии", callback_data="problem guest_trouble_1")],
@@ -57,22 +54,43 @@ guest_trouble_all =InlineKeyboardMarkup(inline_keyboard=[
 last_page_guest = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text="вернуться", callback_data="return_guest")],[InlineKeyboardButton(text="проблема решена", callback_data="guest_decided")]
 ])
-#Двери
-door = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text="Не могу открыть дверь в здание", callback_data="problem door_1")],
-    [InlineKeyboardButton(text="Не могу открыть дверь в квартиру", callback_data="problem door_2")],
-    [InlineKeyboardButton(text="Проблема с ключами", callback_data="problem door_3")],
+#постельное
+bedding = InlineKeyboardMarkup(inline_keyboard=[
+    [InlineKeyboardButton(text="Курьера нет, нечем работать", callback_data="problem bedding_1")],
+    [InlineKeyboardButton(text="Брак постельного", callback_data="problem bedding_2")],
+    [InlineKeyboardButton(text="Уборка закончена, курьера нет", callback_data="problem bedding_3")],
     [InlineKeyboardButton(text="Проблемы нет в списке", callback_data="add_problem_door")]
 ])
 
-#последняя страница двери
+#последняя страница постельное
 last_page_door = InlineKeyboardMarkup(inline_keyboard=[
-    [InlineKeyboardButton(text="вернуться", callback_data="return_door")],[InlineKeyboardButton(text="проблема решена", callback_data="door_decided")]
+    [InlineKeyboardButton(text="вернуться", callback_data="return_bedding")],[InlineKeyboardButton(text="проблема решена", callback_data="bedding_decided")]
 ])
 
-#постельное
+#раздатка
+consumables = InlineKeyboardMarkup(inline_keyboard=[
+    [InlineKeyboardButton(text="SOS закончилась туал бумага", callback_data="problem consumables_1")],
+    [InlineKeyboardButton(text="Нет основной раздатки", callback_data="problem consumables_2")],
+    [InlineKeyboardButton(text="В контрольном списке нет пунктов из раздатки", callback_data="problem consumables_3")],
+    [InlineKeyboardButton(text="Проблемы нет в списке", callback_data="add_problem_door")]
+])
 
 
-#Вещи
-#Поломка
+#авыавы
+async def create_keyboards(buttons: list) -> InlineKeyboardMarkup:
+    keyboards_list = []
+    for button_info in buttons:
+        keyboards_list.append([InlineKeyboardButton(text=button_info[0], callback_data=button_info[1])])
+
+    return InlineKeyboardMarkup(inline_keyboard=keyboards_list)
+
+#
+async def create_keyboards_fi(buttons: list, recallback: str) -> InlineKeyboardMarkup:
+    keyboards_list = []
+    for button_info in buttons:
+        keyboards_list.append([InlineKeyboardButton(text=button_info[0], callback_data=button_info[1])])
+    keyboards_list.append(
+        [InlineKeyboardButton(text="Вернуться", callback_data=recallback),InlineKeyboardButton(text="Проблема решена", callback_data="pronto")]
+    )
+    return InlineKeyboardMarkup(inline_keyboard=keyboards_list)
 
