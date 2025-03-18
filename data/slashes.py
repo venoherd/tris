@@ -2,6 +2,8 @@ from aiogram import Router
 from aiogram.types import Message
 from aiogram.filters import Command
 
+from data.keyboards import all_page_one
+
 router_sla = Router(name='Bred')
 
 #другие команды
@@ -17,5 +19,8 @@ async def info(message: Message):
 async def hello(message: Message):
     await message.answer("Доброе утро! Готовы приступить к работе?")
 
+@router_sla.message(Command("problems"))
+async def rpoblem_main(message: Message):
+    await message.answer("Ниже представлен список всех проблем",reply_markup=all_page_one,)
 
 
