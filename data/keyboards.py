@@ -10,7 +10,6 @@ all_page_one = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text="Проблема 'сюрпризы после гостей'", callback_data="guest")],
     [InlineKeyboardButton(text="Проблема с постельным", callback_data="bedding")],
     [InlineKeyboardButton(text="Проблемы с раздаткой ", callback_data="consumables")],
-    [InlineKeyboardButton(text="прошлая ", callback_data="last_page_all"), InlineKeyboardButton(text="следующая", callback_data="next_page_all")],
 ])
 
 all_page_two = InlineKeyboardMarkup(inline_keyboard=[
