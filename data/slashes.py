@@ -13,14 +13,14 @@ async def help(message: Message):
 
 @router_sla.message(Command("info"))
 async def info(message: Message):
-    await message.answer("а тут будет важная информация")
+    await message.reply("Тут все еще нет важной информации...")
 
 @router_sla.message(Command("hello"))
 async def hello(message: Message):
-    await message.answer("Доброе утро! Готовы приступить к работе?")
+    await message.reply("Доброе утро! Готовы приступить к работе?")
 
 @router_sla.message(Command("problems"))
 async def rpoblem_main(message: Message):
-    await message.answer("Ниже представлен список всех проблем",reply_markup=all_page_one,)
+    await message.reply("Ниже представлен список всех проблем",reply_markup=all_page_one,)
 
 

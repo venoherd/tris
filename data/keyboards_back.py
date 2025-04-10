@@ -10,9 +10,9 @@ async def rpoblem_main(message: Message):
     await message.reply(text="Если у вас возникла какая-то проблема, напишите в чат - \"проблема\", далее выберете с чем ваша проблема и найдите ее в списке! ")
 
 #основное меню
-@router_boards_back.message(F.text.lower() == "проблемы")
+@router_boards_back.message(F.text.lower() == "проблема")
 async def rpoblem_main(message: Message):
-    await message.answer("Ниже представлен список всех проблем",reply_markup=all_page_one,)
+    await message.reply("Ниже представлен список всех проблем",reply_markup=all_page_one,)
 
 @router_boards_back.message(F.text.lower() == "проблемы два")
 async def rpoblem_main_two(message: Message):
