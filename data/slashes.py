@@ -2,7 +2,8 @@ from aiogram import Router
 from aiogram.types import Message
 from aiogram.filters import Command
 
-from data.keyboards import all_page_one
+from data.db_tools import output_mains, output_par, output_recall
+from data.keyboards import create_keyboards, create_keyboards_fi
 
 router_sla = Router(name='Bred')
 
@@ -19,8 +20,20 @@ async def info(message: Message):
 async def hello(message: Message):
     await message.reply("Доброе утро! Готовы приступить к работе?")
 
+
+
+#тут создается все!
 @router_sla.message(Command("problems"))
 async def rpoblem_main(message: Message):
-    await message.reply("Ниже представлен список всех проблем",reply_markup=all_page_one,)
+    id_message, text_message, id_parents = await output_mains("main_m")
+    keyboard_buttons = await output_par(id_message)
+
+    recallback = "main_m"
+    if id_parents is not None:
+        recallback = await output_recall(id_parents)
+
+    keyboard = await create_keyboards_fi(keyboard_buttons, recallback)
+
+    await message.reply(text_message, reply_markup=keyboard)
 
 

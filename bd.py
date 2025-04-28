@@ -59,6 +59,17 @@ async def output_search():
          """)
         await db.commit()
 
+#таблица для хранения инструкций ()
+async def add_mun():
+    async  with aiosqlite.connect("keyboards.db") as db:
+        await db.execute("""
+            CREATE TABLE IF NOT EXISTS muns (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+           tg_m_id TEXT unique,
+           teg TEXT
+           
+             )
+         """)
+        await db.commit()
 
-
-asyncio.run(output_search())
+asyncio.run(add_mun())
